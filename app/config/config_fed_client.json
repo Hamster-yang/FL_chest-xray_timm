@@ -1,0 +1,35 @@
+{
+  "format_version": 2,
+
+  "executors": [
+    {
+      "tasks": ["train", "submit_model"],
+      "executor": {
+        "path": "chestxraytrainer.ChestXrayTrainer",
+        "args": {
+          "data_path": "/dataset",
+          "log_path" : "/tmp/log",
+          "model_name" : "densenet121",
+          "lr": 0.001,
+          "epochs": 5
+        }
+      }
+    },
+    {
+      "tasks": ["validate"],
+      "executor": {
+        "path": "chestxrayvalidator.ChestXrayValidator",
+        "args": {
+           "data_path": "/dataset",
+           "model_name" : "densenet121"
+        }
+      }
+    }
+  ],
+  "task_result_filters": [
+  ],
+  "task_data_filters": [
+  ],
+  "components": [
+  ]
+}
